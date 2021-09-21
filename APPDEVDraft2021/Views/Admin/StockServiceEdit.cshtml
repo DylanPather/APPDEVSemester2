@@ -1,0 +1,246 @@
+﻿@model APPDEVDraft2021.Models.StockServiceTbl
+
+@{
+    ViewBag.Title = "StockServiceEdit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    tbody {
+        font-family: 'Lato', sans-serif;
+        font-size: 18px;
+        color: black;
+        padding-top: 5px;
+    }
+
+    body {
+        background-color: #cccaca;
+    }
+
+    .fas fa-list-alt {
+        color: black;
+        text-align: left;
+        justify-content: left;
+    }
+
+    .CategroyPageHeading {
+        color: #1c8219;
+        text-align: center;
+        justify-content: center;
+        font-family: Arial;
+        font-size: 21px;
+        font-weight: bold;
+    }
+
+    th {
+        background-color: white;
+        font-size: 16px;
+        font-family: 'Lato', sans-serif;
+        color: #0771ab;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        font-weight: bold;
+    }
+
+    .breadcrumb {
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0px 0 6px 0 #545454;
+        font-size: 18px;
+    }
+
+    .card {
+        border: 2px;
+        border-color: white;
+        box-shadow: 0px 0 6px 0 #000000;
+    }
+
+    .card-header {
+        background-color: white;
+        border-radius: 20px;
+    }
+
+    ol li a {
+        color: #ff007d;
+    }
+
+    .editlabel a {
+        font-size: 18px;
+        font-family: 'Lato', sans-serif;
+        color: black;
+    }
+
+    .table-responsive {
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    .pagination {
+        background-color: white;
+        color: black;
+        font-size: 18px;
+        border-color: white;
+    }
+
+    .fa .fa-plus {
+        color: #ffd800;
+    }
+
+    .pageheader {
+        font-family: 'Abril Fatface', cursive;
+        font-size: 27px;
+        color: black;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .AdminCategories {
+        width: 15%;
+        height: 14%;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #d1eaea;
+    }
+</style>
+
+
+
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a style="font-weight:bold;" href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item disabled">Stock Service List</li>
+        <li class="breadcrumb-item active">Edit Stock Service Details</li>
+
+    </ol>
+
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <br />
+            <h2 class="CategroyPageHeading">EDIT STOCK SERVICE ITEMS</h2>
+            <img src="~/Images/Edit Product.svg" class=" AdminCategories pull-right" />
+        </div>
+        @{
+            List<SelectListItem> data = ViewBag.CategoryList;
+        }
+        @using (Html.BeginForm("StockServiceEdit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>StockServiceTbl</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.StockID)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CategoryID, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.CategoryID, data, "---Select---", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsActive)
+                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsDelete, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsDelete)
+                            @Html.ValidationMessageFor(model => model.IsDelete, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                @Html.HiddenFor(model => model.CreatedDate)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ModifiedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ModifiedDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ModifiedDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsFeatured, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsFeatured)
+                            @Html.ValidationMessageFor(model => model.IsFeatured, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SellingPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SellingPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SellingPrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CostPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CostPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CostPrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save Changes" class="btn btn-default" style="background-color: #9be50f; color: black; font-size: 18px; font-family: 'Lato', sans-serif;font-weight:bold; border-color:#9be50f" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

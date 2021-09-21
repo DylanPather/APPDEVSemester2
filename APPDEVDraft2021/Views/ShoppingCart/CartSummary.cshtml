@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    
+
+  <a class="nav-link fa fa-shopping-cart" @Html.ActionLink(" (" + ViewData["CartCount"] + ")", "Index", "ShoppingCart",new { id = "cart-status" })</a>
+
+    
+</body>
+</html>
+

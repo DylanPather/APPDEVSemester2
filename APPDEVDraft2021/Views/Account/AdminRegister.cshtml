@@ -1,0 +1,78 @@
+﻿@model APPDEVDraft2021.Models.AdminRegisterViewModel
+@{
+    ViewBag.Title = "AdminRegister";
+}
+
+<div class="jumbotron">
+
+    <h2>Add user</h2>
+
+    @using (Html.BeginForm("AdminRegister", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.Password, new { @placeholder = "", htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                    <span><input type="checkbox" onclick="myFunction()">Show Password</span>
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+                <script>
+function myFunction() {
+               var x = document.getElementById("Password")
+               var y = document.getElementById("ConfirmPassword");
+               if (x.type === "password" || y.type === "password") {
+                   x.type = "text";
+                   y.type = "text";
+                       } else {
+                   x.type = "password"
+                   y.type = "password";
+                         }
+
+                          }</script>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("User Role", new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @*@Html.DropDownList("Name")*@
+                    @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, " ")
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <abbr title="Add User "> <input type="submit" value="Create" /></abbr><br /><br />
+                    <abbr title="Add User "><button> @Html.ActionLink("Back to Dashboard", "Dashboard", "Admin")</button></abbr>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+
+    </div>
+</div>
+

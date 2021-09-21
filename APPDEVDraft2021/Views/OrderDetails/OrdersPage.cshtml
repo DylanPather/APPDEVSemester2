@@ -1,0 +1,48 @@
+
+@{ ViewBag.Title = "OrdersPage"; }
+<br />
+<br />
+<br />
+
+<br />
+<h2>OrdersPage</h2>
+
+<div class="jumbotron">
+    <h1 align="center">Orders</h1>
+
+    <p>
+        @using (Html.BeginForm("OrdersPage", "OrderDetails", FormMethod.Get))
+        {
+<b> Search By:</b> @Html.RadioButton("searchBy", "OrderId", true)<text>Order number </text> <br />
+                @Html.TextBox("search")<input type="submit" value="Search" />}
+    </p>
+
+
+    <div class="dropdown">
+        @foreach (var item in Model)
+        {
+<p>
+
+    <table width="1000">
+        <tr>
+            <th><h5><b>Order Number:</b></h5><b>@item.Order.OrderId</b></th>
+        </tr>
+        <tr>
+            <td>
+            </td>
+        </tr>
+        <tr>
+
+
+
+            <td>
+
+<p></p><h5><b>First Name:</b></h5>  @item.Order.FirstName <p><h5><b>Last Name: </b></h5>@item.Order.LastName</p><p><h5><b>Address:</b></h5>@item.Order.Address</p><p><h5><b>City:</b></h5>@item.Order.City</p><p><h5><b>Province:</b></h5>@item.Order.Province</p><p><h5><b>Phone:</b></h5>@item.Order.Phone</p><p><h5><b>Email:</b></h5>@item.Order.Email</p><p><h5><b>Product Name:</b></h5>@item.Product.PName</p><p><h5><b>Price:</b></h5>@item.Price</p>
+<p></p>
+            </td>
+            </tr>
+            </table>
+            @Html.ActionLink("Details", "Details", new { id = item.OrderDetailId })
+            </p>}
+    </div>
+

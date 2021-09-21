@@ -1,0 +1,214 @@
+﻿@model APPDEVDraft2021.Models.BookingTbl
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/jquery-ui-timepicker-addon.min.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "BookVehicle";
+    Layout = "~/Views/Shared/_LayoutAdminCapture.cshtml";
+}
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-timepicker-addon.min.js"></script>
+<style>
+    tbody {
+        font-family: 'Lato', sans-serif;
+        font-size: 18px;
+        color: black;
+        padding-top: 5px;
+    }
+
+    body {
+        background-color: #cccaca;
+    }
+
+    .fas fa-list-alt {
+        color: black;
+        text-align: left;
+        justify-content: left;
+    }
+
+    .CategroyPageHeading {
+        color: #1c8219;
+        text-align: center;
+        justify-content: center;
+        font-family: Arial;
+        font-size: 21px;
+        font-weight: bold;
+    }
+
+    th {
+        background-color: white;
+        font-size: 16px;
+        font-family: 'Lato', sans-serif;
+        color: #0771ab;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        font-weight: bold;
+    }
+
+    .breadcrumb {
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0px 0 6px 0 #545454;
+        font-size: 18px;
+    }
+
+    .card {
+        border: 2px;
+        border-color: white;
+        box-shadow: 0px 0 6px 0 #000000;
+    }
+
+    .card-header {
+        background-color: white;
+        border-radius: 20px;
+    }
+
+    ol li a {
+        color: #ff007d;
+    }
+
+    .editlabel a {
+        font-size: 18px;
+        font-family: 'Lato', sans-serif;
+        color: black;
+    }
+
+    .table-responsive {
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    .pagination {
+        background-color: white;
+        color: black;
+        font-size: 18px;
+        border-color: white;
+    }
+
+    .fa .fa-plus {
+        color: #ffd800;
+    }
+
+    .pageheader {
+        font-family: 'Abril Fatface', cursive;
+        font-size: 27px;
+        color: black;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .AdminCategories {
+        width: 15%;
+        height: 14%;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #d1eaea;
+    }
+</style>
+
+
+
+
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a style="font-weight:bold;" href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item disabled">Book Vehicle</li>
+        <li class="breadcrumb-item active">Add Booking</li>
+
+    </ol>
+
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <br />
+            <h2 class="CategroyPageHeading">ADD BOOKING</h2>
+            <img src="~/Images/Add Product.svg" class=" AdminCategories pull-right" />
+        </div>
+
+        <div class="card-body">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Customer Table</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.VehicleID)
+                    @Html.HiddenFor(model => model.MechanicID)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DateBooked, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DateBooked, new { htmlAttributes = new { @class = "form-control date-time-picker" } })
+                            @Html.ValidationMessageFor(model => model.DateBooked, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Add" class="btn btn-primary" style="background-color: #9be50f; color: black; font-size: 18px; font-family: 'Lato', sans-serif;font-weight:bold; border-color:#9be50f" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(function () {
+                $(".date-time-picker").datetimepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "-100:+0",
+                    dateFormat: 'dd-M-yy',
+                    controlType: 'select',
+                    timeFormat: 'hh:mm TT'
+                });
+            });
+
+            jQuery.validator.methods.date = function (value, element) {
+                var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+                if (isChrome) {
+                    var d = new Date();
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                } else {
+                    return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                }
+            };
+        });
+
+    </script>
+}

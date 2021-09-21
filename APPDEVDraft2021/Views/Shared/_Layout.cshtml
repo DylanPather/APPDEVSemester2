@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Vees Tyres and Alignment</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <link rel="icon" href="~/Tyre Favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="containernav">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Vees Tyres and Alignment", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li> @Html.ActionLink("Home", "Index", "Home")</li>
+                    <li> @Html.ActionLink("About", "About", "Home")</li>
+                    <li> @Html.ActionLink("Contact", "ContactUs", "Home")</li>
+                    <li> @Html.ActionLink("Services", "Services", "Home")</li>
+                    <li> @Html.ActionLink("Products", "ProductsPage", "Products")</li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li> @Html.ActionLink("Dashboard", "Dashboard", "Admin")</li>
+                    }
+                    @if (User.IsInRole("Mechanic"))
+                    {
+                        <li> @Html.ActionLink("Dashboard", "Dashboard", "Mechanic")</li>
+                    }
+                    <li>@{Html.RenderAction("CartSummary", "ShoppingCart"); }</li>
+                    @*<li> @Html.ActionLink("My Account", "", "")</li>*@
+                    @*<li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>*@
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>   
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

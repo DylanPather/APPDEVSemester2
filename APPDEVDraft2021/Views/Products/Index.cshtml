@@ -1,0 +1,64 @@
+﻿@model IEnumerable<APPDEVDraft2021.Models.Product>
+
+@{ ViewBag.Title = "Index"; }
+<br />
+<br />
+<br />
+<br />
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageLocation)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.PName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProdType)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Stock)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        <img style="height:100px; width:100px;" src="@Url.Content("~/Content/"+item.ImageLocation)" />
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+    </td>
+</tr>}
+
+</table>

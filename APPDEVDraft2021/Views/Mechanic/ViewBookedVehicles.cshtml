@@ -1,0 +1,167 @@
+﻿@model IEnumerable<APPDEVDraft2021.Models.BookingTbl>
+
+@{
+    ViewBag.Title = "Stock Services";
+    Layout = "~/Views/Shared/_LayoutMechanic.cshtml";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<style>
+    tbody {
+        font-family: 'Lato', sans-serif;
+        font-size: 18px;
+        color: black;
+        padding-top: 5px;
+    }
+
+    body {
+        background-color: #cccaca;
+    }
+
+    .fas fa-list-alt {
+        color: black;
+        text-align: left;
+        justify-content: left;
+    }
+
+    .CategroyPageHeading {
+        color: #1c8219;
+        text-align: center;
+        justify-content: center;
+        font-family: Arial;
+        font-size: 21px;
+        font-weight: bold;
+    }
+
+    th {
+        background-color: white;
+        font-size: 16px;
+        font-family: 'Lato', sans-serif;
+        color: #0771ab;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        font-weight: bold;
+    }
+
+    .breadcrumb {
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0px 0 6px 0 #545454;
+        font-size: 18px;
+    }
+
+    .card {
+        border: 2px;
+        border-color: white;
+        box-shadow: 0px 0 6px 0 #000000;
+    }
+
+    .card-header {
+        background-color: white;
+        border-radius: 20px;
+    }
+
+    ol li a {
+        color: #ff007d;
+    }
+
+    .editlabel a {
+        font-size: 18px;
+        font-family: 'Lato', sans-serif;
+        color: black;
+    }
+
+    .table-responsive {
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    .pagination {
+        background-color: white;
+        color: black;
+        font-size: 18px;
+        border-color: white;
+    }
+
+    .fa .fa-plus {
+        color: #ffd800;
+    }
+
+    .pageheader {
+        font-family: 'Abril Fatface', cursive;
+        font-size: 27px;
+        color: black;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .AdminCategories {
+        width: 25%;
+        height: 21%;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #d1eaea;
+    }
+</style>
+
+<h2 class="pageheader">Vees Tyre and Alignment</h2>
+<br />
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a style="font-weight:bold;" href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Your Current Booked Vehicles</li>
+
+    </ol>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <br />
+            <h2 class="CategroyPageHeading">BOOKED VEHICLES</h2>
+           <img src="~/Images/Admin Product Details.jpg" class="AdminCategories pull-right" />
+        </div>
+
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Vehicle ID</th>
+                            <th>Bay No</th>
+                            <th>Quote No</th>
+                            <th>Date Booked</th>
+                            <th>Status</th>
+
+                           
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            int count = 1;
+                        <tr>
+                            <td>@item.VehicleID</td>
+                            <td>@item.BayID</td>
+                            <td>@item.QuotationID</td>
+                            <td>@item.DateBooked</td>
+                            <td>@item.Status</td>
+                            
+
+                        </tr>
+                            count++;
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

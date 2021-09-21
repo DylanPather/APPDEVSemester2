@@ -1,0 +1,162 @@
+﻿@model APPDEVDraft2021.Models.OrderDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrderDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.PName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.PName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.PostalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.PostalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   @* @Html.ActionLink("Edit", "Edit", new { id = Model.OrderDetailId }) |*@
+    @Html.ActionLink("Return to orders", "OrdersPage")
+</p>

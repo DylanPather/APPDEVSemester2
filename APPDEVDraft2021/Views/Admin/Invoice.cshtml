@@ -1,0 +1,185 @@
+@model APPDEVDraft2021.Models.FinalInvoice
+
+@{
+    ViewBag.Title = "InvoiceFinal";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<style>
+
+
+    .btn {
+        display: block;
+        border: none;
+        background-color: #34eb55;
+        color: white;
+        letter-spacing: 2px;
+        font-family: 'Lato', sans-serif;
+        font-size: 17px;
+        transition: .2s all ease-in-out;
+        border-bottom: 2px solid transparent;
+        outline: none;
+        text-align: center;
+        width: 100px;
+    }
+
+    .btn-back-button {
+        display: block;
+        border: none;
+        background-color: #07f50b;
+        color: darkseagreen;
+        letter-spacing: 2px;
+        font-family: 'Lato', sans-serif;
+        font-size: 20px;
+        transition: .2s all ease-in-out;
+        border-bottom: 2px solid transparent;
+        outline: none;
+        text-align: center;
+        width: 100px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    th, td {
+        font-size: 14px;
+    }
+</style>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container-fluid">
+    @{
+        var item = Model;
+    }
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="row p-5">
+                        <div class="col-md-6">
+                            <img src="~/Images/VeesTyres.jpg">
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <p class="font-weight-bold mb-1">@item.InvoiceID</p>
+                            <p class="text-muted">Current Date: @DateTime.Now</p>
+                        </div>
+                    </div>
+                    <hr class="my-5">
+                    <div class="row pb-5 p-5">
+                        <div class="col-md-6">
+                            <p class="font-weight-bold mb-4">Customer Information</p>
+                            <p class="mb-1">@item.CustomerFirstName  @item.CustomerLastName</p>
+
+                            <p class="mb-1">Contact No: @item.CustomerCellNo</p>
+                            <p class="mb-1">Email: @item.CustomerEmail</p>
+                            <p class="mb-1">Vehicle Reg No: @item.VehicleRegNo</p>
+                            <p class="mb-1">Make : @item.VehicleMake</p>
+                            <p class="mb-1">Model : @item.VehicleModel</p>
+                            <p class="mb-1">Milleage : @item.VehicleMilleage Km</p>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <p class="font-weight-bold mb-4">Invoice</p>
+                            <p class="mb-1"><span class="text-muted">Invoice ID: </span> @item.InvoiceID</p>
+                            <p class="mb-1"><span class="text-muted">Date of Invoice:</span> @item.DateOfInvoice</p>
+                            <p class="mb-1"><span class="text-muted">Referenced From Quote ID : </span> @item.QuoteID</p>
+                            <p class="mb-1"><span class="text-muted">Payment Type: </span>PayFast</p>
+                            <p class="mb-1"><span class="text-muted">Name: </span>PayFast Simulation</p>
+                        </div>
+                    </div>
+                    <div class="row p-5">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="border-0 text-uppercase small font-weight-bold">ID</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Item</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Description</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Unit Cost</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (item.List == null)
+                                    {
+                                        foreach (var x in item.List1)
+                                        {
+                                            <tr>
+                                                <td>@x.StockID</td>
+                                                <td>@x.StockServiceTbl.Name</td>
+                                                <td>@x.StockServiceTbl.Description</td>
+                                                <td>@x.Quantity</td>
+                                                <td>@x.SellingPrice</td>
+                                                <td>R @(x.SellingPrice * x.Quantity)</td>
+                                            </tr>
+
+
+                                        }
+
+
+
+
+                                    }
+                                    else
+                                    {
+                                        foreach (var x in item.List)
+                                        {
+                                            <tr>
+                                                <td>@x.StockID</td>
+                                                <td>@x.StockServiceTbl.Name</td>
+                                                <td>@x.StockServiceTbl.Description</td>
+                                                <td>@x.Quantity</td>
+                                                <td>@x.SellingPrice</td>
+                                                <td>R @(x.SellingPrice * x.Quantity)</td>
+                                            </tr>
+
+
+                                        }
+
+                                    }
+
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Grand Total(VAT Incl)</div>
+                            <div class="h2 font-weight-light">R @item.InvoiceTotal</div>
+
+                        </div>
+
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">VAT(15%)</div>
+                            <div class="h2 font-weight-light">R @item.VAT</div>
+                        </div>
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Sub - Total amount Without VAT</div>
+                            <div class="h2 font-weight-light">R @item.InvoiceTotalLessVat</div>
+                        </div>
+                        <div class="pull-left">
+                            <h1>
+                            @Html.ActionLink("Pay Now", "PayNow","Admin", new { quoteid = item.QuoteID })
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-light mt-5 mb-5 text-center small">by : <a class="text-light" target="_blank" href="">Vees Tyre and Alignment © </a></div>
+
+</div>

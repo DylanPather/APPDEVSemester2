@@ -1,0 +1,131 @@
+﻿@model IEnumerable<APPDEVDraft2021.Models.Product>
+
+@{ ViewBag.Title = "ProductsPage"; }
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/Site.css" />
+</head>
+@*
+    <style>
+        body {
+            background-image: url('../../Content/home/BG_products.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            color: aliceblue;
+        }
+
+        .buttons {
+            text-align: justify;
+        }
+
+            .buttons:after {
+                content: '';
+                display: inline-block;
+                width: 99.5%; /* generates an extra transparent line */
+            }
+        /* makeup*/
+        .buttons {
+            min-width: 50em;
+            padding: 1.2em 22em 0;
+            box-shadow: 0 0 5px;
+            margin: 1em;
+            border-radius: 0.25em;
+        }
+
+        button {
+            background-color: black;
+            color: white;
+        }
+
+        a {
+            color: white;
+        }
+
+        h1 {
+            color: aliceblue;
+        }
+
+        h2 {
+            color: chartreuse;
+            text-decoration: underline;
+        }
+
+        h3 {
+            color: aliceblue;
+        }
+
+        h5 {
+            color: chartreuse;
+        }
+
+        img {
+            max-height: 420px;
+            max-width: 400px;
+        }
+    </style>*@
+<br />
+<br />
+<br />
+
+<br />
+<div class="jumbotron">
+    <h1 align="center">Products</h1>
+    <h3 align="center">Feel free to Search, View, and Purchase any product that is appealing to you.</h3>
+
+    <p>
+        @using (Html.BeginForm("ProductsPage", "Products", FormMethod.Get))
+        {
+<b> Search By:</b> @Html.RadioButton("searchBy", "PName", true)<text>Name </text>
+                @Html.RadioButton("searchBy", "ProdType") <text> Product Type </text> <br />
+                                @Html.TextBox("search")<input type="submit" value="Search" />}
+    </p>
+
+
+    <div class="dropdown">
+        @foreach (var item in Model)
+        {
+
+
+<table width="1000">
+    <tr>
+        <th><h2><b>@item.PName</b></h2></th>
+    </tr>
+    <tr>
+        <td>
+        </td>
+    </tr>
+    <tr>
+
+        <td>
+            <img style="height:500px; width:450px;" src="@Url.Content("~/Content/"+item.ImageLocation)" align="left" />
+            <p></p><h5><b>Product Type:</b></h5>  @item.ProdType <p><h5><b>Description:</b></h5>@item.Description</p><p><h5><b>In stock:</b></h5>@item.Stock</p><p><h5><b>Price:</b></h5>R @item.Price</p>
+            <p>
+                <div class="buttons">
+
+                    <button onclick="cartMessage()"><a>@Html.ActionLink("Add to cart   ", "AddToCart", "ShoppingCart", new { id = item.ProductID }, "")</a><i class="fa fa-shopping-cart"></i></button>
+                </div>
+            </p>
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+
+        </th>
+    </tr>
+</table>
+
+
+                <script>
+                    function myDownload() {
+                        alert("");
+                    }
+                    function cartMessage() {
+                        alert("Item added to cart!")
+                    }
+                </script>}
+    </div>
+
+</div>
+
